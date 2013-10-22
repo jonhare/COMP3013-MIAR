@@ -1,0 +1,1 @@
+An [OpenIMAJ](http://www.openimaj.org)-powered presentation introducing some the facets of Multimedia Information Analysis & Retrieval for [COMP3013](https://secure.ecs.soton.ac.uk/module/COMP3013).
