@@ -96,24 +96,12 @@
       <version>1.1.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
-    <!-- <dependency>
-			<groupId>org.openimaj</groupId>
-			<artifactId>core-web</artifactId>
-			<version>${openimaj.version}</version>
-			<scope>compile</scope>
-		</dependency>
 		<dependency>
-			<groupId>org.openimaj</groupId>
-			<artifactId>readability4j</artifactId>
-			<version>${openimaj.version}</version>
-			<scope>compile</scope>
+			<groupId>org.openimaj.content</groupId>
+		  <artifactId>slideshow</artifactId>
+		  <version>1.1.1-SNAPSHOT</version>
+      <scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.openimaj</groupId>
-			<artifactId>webpage-analysis</artifactId>
-			<version>${openimaj.version}</version>
-			<scope>compile</scope>
-		</dependency> -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -145,12 +133,14 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.2.1</version>
         <configuration>
+	        <finalName>COMP3013-MIAR</finalName>
+          <appendAssemblyId>false</appendAssemblyId>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>uk.ac.soton.ecs.jsh2.App</mainClass>
+              <mainClass>uk.ac.soton.ecs.jsh2.comp3013.MIAR</mainClass>
             </manifest>
           </archive>
         </configuration>
