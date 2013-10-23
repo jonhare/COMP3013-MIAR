@@ -17,8 +17,7 @@ public class MIAR {
 
 		final List<Slide> slides = new ArrayList<Slide>();
 
-		slides.add(new DigitalAudioRepresentation());
-
+		slides.add(new SpectrogramSlide());
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide01.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide02.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide03.png")));
@@ -42,7 +41,9 @@ public class MIAR {
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide21.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide22.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide23.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide24.png")));
+		// slides.add(new
+		// PictureSlide(MIAR.class.getResource("slides/Slide24.png")));
+		slides.add(new HistogramSlide(Mode.RGB_HISTOGRAM));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide25.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide26.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide27.png")));
@@ -51,7 +52,9 @@ public class MIAR {
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide30.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide31.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide32.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide33.png")));
+		// slides.add(new
+		// PictureSlide(MIAR.class.getResource("slides/Slide33.png")));
+		slides.add(new HistogramSlide(Mode.SIFT));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide34.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide35.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide36.png")));
