@@ -30,7 +30,7 @@ public class MIAR {
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide09.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide10.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide11.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide12.png")));
+		slides.add(new DigitalAudioRepresentation());
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide13.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide14.png")));
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide15.png")));

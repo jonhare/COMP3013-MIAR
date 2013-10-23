@@ -1,6 +1,8 @@
 package uk.ac.soton.ecs.jsh2.comp3013;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.swing.JPanel;
@@ -11,15 +13,22 @@ import org.openimaj.audio.JavaSoundAudioGrabber;
 import org.openimaj.audio.SampleChunk;
 import org.openimaj.audio.analysis.EffectiveSoundPressure;
 import org.openimaj.content.slideshow.PictureSlide;
-import org.openimaj.image.DisplayUtilities.ScalingImageComponent;
+import org.openimaj.image.DisplayUtilities;
+import org.openimaj.image.DisplayUtilities.ImageComponent;
 import org.openimaj.image.ImageUtilities;
+import org.openimaj.image.MBFImage;
+import org.openimaj.image.colour.ColourSpace;
+import org.openimaj.image.colour.RGBColour;
 import org.openimaj.vis.audio.AudioWaveform;
 
 public class DigitalAudioRepresentation extends PictureSlide implements AudioGrabberListener {
-	private ScalingImageComponent waveform;
+	private static final Float[] MIC_COL = new Float[] { 192f / 255f, 80f / 255f, 77f / 255f };
 	private AudioWaveform aw;
 	private JavaSoundAudioGrabber grabber;
 	private EffectiveSoundPressure esp;
+	private ImageComponent espic;
+	private MBFImage espImg;
+	private BufferedImage espBImg;
 
 	public DigitalAudioRepresentation() throws IOException {
 		super(ImageUtilities.readMBF(DigitalAudioRepresentation.class.getResource("slides/Slide12.png")));
@@ -31,18 +40,35 @@ public class DigitalAudioRepresentation extends PictureSlide implements AudioGra
 
 		panel.setOpaque(false);
 		panel.setLayout(null);// new GridLayout(1, 1));
-		panel.add(super.getComponent(width, height));
+		final Component bg = super.getComponent(width, height);
+		panel.add(bg);
 
 		aw = new AudioWaveform(450, 506);
+		aw.setColour(new Float[] { 233f / 255f, 236f / 255f, 236f / 255f });
+		aw.setMaximum(2);
 		aw.setBounds(52, 180, 450, 506);
 		panel.add(aw);
 
 		grabber = new JavaSoundAudioGrabber(new AudioFormat(16, 44.1, 1));
 		grabber.addAudioGrabberListener(this);
+		grabber.setMaxBufferSize(4096);
 		new Thread(grabber).start();
 
 		esp = new EffectiveSoundPressure();
-		esp.setUnderlyingStream(grabber);
+		espic = new DisplayUtilities.ImageComponent(false);
+		espic.setBackground(Color.WHITE);
+		espic.setShowPixelColours(false);
+		espic.setShowXYPosition(false);
+		espic.removeMouseListener(espic);
+		espic.removeMouseMotionListener(espic);
+		panel.add(espic);
+		espic.setBounds(630, 525, 46, 122);
+		espImg = new MBFImage(46, 122, ColourSpace.RGB);
+		espImg.fill(RGBColour.WHITE);
+		espImg.drawLine(espImg.getWidth() / 2 - 1, 0, espImg.getWidth() / 2 - 1, espImg.getHeight(), 1, MIC_COL);
+		espic.setImage(ImageUtilities.createBufferedImageForDisplay(espImg, espBImg));
+
+		panel.setComponentZOrder(bg, 2);
 
 		while (grabber.isStopped()) {
 			try {
@@ -66,9 +92,32 @@ public class DigitalAudioRepresentation extends PictureSlide implements AudioGra
 
 	@Override
 	public void samplesAvailable(SampleChunk s) {
+		// update waveform
 		aw.setData(s.getSampleBuffer());
 		aw.update();
 
-		System.out.println(esp.getEffectiveSoundPressure());
+		// update microphone
+		try {
+			esp.process(s);
+			espImg.fill(RGBColour.WHITE);
+
+			final double press = esp.getEffectiveSoundPressure();
+
+			int px = espImg.getWidth() / 2 - 1;
+			for (int i = 2; i <= espImg.getHeight(); i += 2) {
+				final double prop = Math.sin(Math.PI * i / espImg.getHeight());
+				final double amp = (espImg.getWidth() / 2) * prop * press / 10000;
+
+				final int nx = (int) ((espImg.getWidth() / 2) - amp);
+
+				espImg.drawLine(px, i - 2, nx, i, 2, MIC_COL);
+
+				px = nx;
+			}
+
+			espic.setImage(ImageUtilities.createBufferedImageForDisplay(espImg, espBImg));
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
