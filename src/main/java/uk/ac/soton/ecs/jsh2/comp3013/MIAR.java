@@ -54,7 +54,7 @@ public class MIAR {
 		for (int i = 10; i <= 18; i++)
 			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
 
-		// slides.add(new MusicSlide());
+		slides.add(new MusicSlide());
 
 		for (int i = 20; i <= 26; i++)
 			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
