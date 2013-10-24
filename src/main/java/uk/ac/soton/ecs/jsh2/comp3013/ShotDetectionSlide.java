@@ -158,7 +158,7 @@ public class ShotDetectionSlide implements Slide, ShotDetectedListener<MBFImage>
 		if (vk != null) {
 			keyframes.add(vk.clone());
 
-			int i = 0;
+			int i = -1;
 			for (final VideoKeyframe<MBFImage> kf : keyframes) {
 				this.keyframesImage.drawImage(kf.getImage().process(rp), tw * i, 0);
 				i++;

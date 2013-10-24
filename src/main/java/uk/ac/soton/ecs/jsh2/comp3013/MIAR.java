@@ -46,8 +46,6 @@ public class MIAR {
 
 		final List<Slide> slides = new ArrayList<Slide>();
 
-		// slides.add(new ShotDetectionSlide());
-
 		for (int i = 1; i <= 9; i++)
 			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide0" + i + ".png")));
 
