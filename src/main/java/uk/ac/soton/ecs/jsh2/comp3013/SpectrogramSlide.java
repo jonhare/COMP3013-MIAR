@@ -47,9 +47,9 @@ public class SpectrogramSlide implements Slide, AudioGrabberListener {
 	public Component getComponent(int width, int height) throws IOException {
 		spectrogram = new AudioSpectrogram(width, height);
 
-		grabber = new JavaSoundAudioGrabber(new AudioFormat(16, 44.1, 1));
+		grabber = new JavaSoundAudioGrabber(new AudioFormat(16, 11.025, 1));
 		grabber.addAudioGrabberListener(this);
-		grabber.setMaxBufferSize(256);
+		grabber.setMaxBufferSize(128);
 		new Thread(grabber).start();
 
 		while (grabber.isStopped()) {

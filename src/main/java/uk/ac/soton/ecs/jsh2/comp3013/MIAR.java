@@ -51,7 +51,7 @@ public class MIAR {
 
 		slides.add(new DigitalAudioRepresentation());
 
-		for (int i = 10; i <= 18; i++)
+		for (int i = 11; i <= 18; i++)
 			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
 
 		slides.add(new MusicSlide());
