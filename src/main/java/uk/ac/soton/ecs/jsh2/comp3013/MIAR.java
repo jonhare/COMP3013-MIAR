@@ -1,3 +1,32 @@
+/**
+ * Copyright (c) 2013, The University of Southampton and the individual contributors.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ *   * 	Redistributions of source code must retain the above copyright notice,
+ * 	this list of conditions and the following disclaimer.
+ *
+ *   *	Redistributions in binary form must reproduce the above copyright notice,
+ * 	this list of conditions and the following disclaimer in the documentation
+ * 	and/or other materials provided with the distribution.
+ *
+ *   *	Neither the name of the University of Southampton nor the names of its
+ * 	contributors may be used to endorse or promote products derived from this
+ * 	software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package uk.ac.soton.ecs.jsh2.comp3013;
 
 import java.awt.image.BufferedImage;
@@ -17,47 +46,51 @@ public class MIAR {
 
 		final List<Slide> slides = new ArrayList<Slide>();
 
-		slides.add(new SpectrogramSlide());
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide01.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide02.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide03.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide04.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide05.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide06.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide07.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide08.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide09.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide10.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide11.png")));
+		// slides.add(new ShotDetectionSlide());
+
+		for (int i = 1; i <= 9; i++)
+			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide0" + i + ".png")));
+
 		slides.add(new DigitalAudioRepresentation());
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide13.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide14.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide15.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide16.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide17.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide18.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide19.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide20.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide21.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide22.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide23.png")));
-		// slides.add(new
-		// PictureSlide(MIAR.class.getResource("slides/Slide24.png")));
+
+		for (int i = 10; i <= 18; i++)
+			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
+
+		// slides.add(new MusicSlide());
+
+		for (int i = 20; i <= 26; i++)
+			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
+
 		slides.add(new HistogramSlide(Mode.RGB_HISTOGRAM));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide25.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide26.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide27.png")));
+
 		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide28.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide29.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide30.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide31.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide32.png")));
-		// slides.add(new
-		// PictureSlide(MIAR.class.getResource("slides/Slide33.png")));
+
+		slides.add(new SegmentationSlide());
+
+		for (int i = 30; i <= 31; i++)
+			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
+
+		slides.add(new DoGPointsSlide());
+
+		for (int i = 33; i <= 34; i++)
+			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
+
+		slides.add(new SIFTTrackerSlide());
+
+		for (int i = 36; i <= 38; i++)
+			slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide" + i + ".png")));
+
 		slides.add(new HistogramSlide(Mode.SIFT));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide34.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide35.png")));
-		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide36.png")));
+
+		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide40.png")));
+
+		slides.add(new ShotDetectionSlide());
+
+		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide42.png")));
+
+		slides.add(new SpectrogramSlide());
+
+		slides.add(new PictureSlide(MIAR.class.getResource("slides/Slide44.png")));
 
 		new SlideshowApplication(slides, background.getWidth(), background.getHeight(), background);
 	}
